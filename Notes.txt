@@ -1,1 +1,16 @@
 
+Thank you for installing PostgreSQL with {{ .Chart.Name }}!
+
+Your PostgreSQL service is up and running.
+
+To access your PostgreSQL database:
+
+  1. Get the password:
+     kubectl get secret --namespace {{ .Release.Namespace }} {{ include "my-app.fullname" . }}-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode
+
+  2. Connect from a pod inside the cluster:
+     psql -h {{ include "my-app.fullname" . }}-postgresql -U postgres
+
+  3. Or port-forward to access locally:
+     kubectl port-forward svc/{{ include "my-app.fullname" . }}-postgresql 5432:5432
+     psql -h 127.0.0.1 -p 5432 -U postgres
