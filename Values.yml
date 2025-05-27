@@ -1,1 +1,9 @@
 
+postgresql:
+  image: postgres:15
+  database: mydb
+  user: myuser
+  password: mypass
+  persistence:
+    enabled: true
+    size: 1Gi
